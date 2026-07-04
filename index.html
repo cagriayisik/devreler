@@ -693,6 +693,7 @@
         "Amasya": [40.6499, 35.8353],
         "Ankara": [39.9334, 32.8597],
         "Antalya": [36.8969, 30.7133],
+        "Ardahan": [41.1125, 42.7022],
         "Artvin": [41.1828, 41.8183],
         "Aydın": [37.8560, 27.8416],
         "Balıkesir": [39.6484, 27.8826],
@@ -771,7 +772,6 @@
         { id: 5, ad: "Selda YILDIZ", sehir: "Hatay", kurum: "Hatay T Tipi Kapalı CİK" },
         { id: 6, ad: "Bahar GÖKTAŞ", sehir: "Mardin", kurum: "Mardin E Tipi Kapalı CİK" },
         { id: 7, ad: "Hulki ÖZER", sehir: "Rize", kurum: "Rize L Tipi Kapalı CİK" },
-        { id: 8, ad: "Samet ???", sehir: "Konya", kurum: "Ereğli Yüksek Güvenlikli Kapalı CİK" },
         { id: 9, ad: "Sefa KARADAĞ", sehir: "Konya", kurum: "Konya Ereğli T Tipi Kapalı CİK" },
         { id: 10, ad: "Mahmut TÜRKARSLAN", sehir: "Kırşehir", kurum: "Kırşehir Y Tipi Kapalı CİK" },
         { id: 11, ad: "Mustafa Murat ÇEPNİOĞLU", sehir: "Ordu", kurum: "Ordu E Tipi Kapalı ve Açık CİK" },
@@ -831,7 +831,8 @@
         { id: 65, ad: "Önder Yılğın", sehir: "Tekirdağ", kurum: "Karatepe Yüksek Güvenlikli Kapalı CİK" },
         { id: 66, ad: "İlkay Bayram", sehir: "Batman", kurum: "Batman T Tipi Kapalı CİK" },
         { id: 67, ad: "Aydın ERGİN", sehir: "Malatya", kurum: "Akçadağ T Tipi Kapalı ve Açık CİK" },
-        { id: 68, ad: "Ahmet DEMİREL", sehir: "İstanbul", kurum: "Marmara Kapalı CİK" }
+        { id: 68, ad: "Ahmet DEMİREL", sehir: "İstanbul", kurum: "Marmara Kapalı CİK" },
+        { id: 69, ad: "Serkan ARSLANTOSUN", sehir: "Ardahan", kurum: "Ardahan T Tipi Kapalı ve Açık CİK" }
     ];
 
     // İl koordinat eşleştirmesi
@@ -1063,8 +1064,7 @@
                     <div class="popup-kurum">${count} devre arkadaşı</div>
             `;
 
-            const showMax = 5;
-            kisiler.slice(0, showMax).forEach(p => {
+            kisiler.forEach(p => {
                 const pi = getInitials(p.ad);
                 popupHtml += `
                     <div class="popup-person">
@@ -1076,10 +1076,6 @@
                     </div>
                 `;
             });
-
-            if (kisiler.length > showMax) {
-                popupHtml += `<div class="popup-more">+ ${kisiler.length - showMax} kişi daha</div>`;
-            }
 
             popupHtml += '</div>';
             marker.bindPopup(popupHtml, { maxWidth: 300, closeButton: true });
