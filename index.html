@@ -43,15 +43,151 @@
         body.light-theme {
             --bg-primary: #f0f4f8;
             --bg-secondary: #ffffff;
-            --bg-card: rgba(255, 255, 255, 0.9);
-            --bg-glass: rgba(240, 244, 248, 0.85);
-            --border-glass: rgba(0, 150, 120, 0.15);
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --bg-glass: rgba(255, 255, 255, 0.88);
+            --border-glass: rgba(0, 0, 0, 0.1);
             --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #94a3b8;
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-            --accent-dim: rgba(0, 180, 140, 0.12);
-            --purple-dim: rgba(139, 92, 246, 0.1);
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --accent: #059669;
+            --accent-light: #10b981;
+            --accent-dim: rgba(5, 150, 105, 0.1);
+            --purple: #7c3aed;
+            --purple-dim: rgba(124, 58, 237, 0.08);
+        }
+
+        /* Light theme — kart ve bileşen override'ları */
+        body.light-theme .person-card {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border-color: rgba(0, 0, 0, 0.08) !important;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        }
+        body.light-theme .person-card:hover {
+            border-color: rgba(5, 150, 105, 0.3) !important;
+            box-shadow: 0 2px 10px rgba(5, 150, 105, 0.1);
+        }
+        body.light-theme .person-card.kurum-muduru {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(255, 255, 255, 0.98)) !important;
+            border: 1px solid rgba(245, 158, 11, 0.35) !important;
+            box-shadow: 0 2px 10px rgba(245, 158, 11, 0.1);
+        }
+        body.light-theme .person-card.kurum-muduru:hover {
+            border-color: rgba(245, 158, 11, 0.6) !important;
+            box-shadow: 0 4px 16px rgba(245, 158, 11, 0.15);
+        }
+        body.light-theme .person-avatar {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.12), rgba(124, 58, 237, 0.08)) !important;
+            border-color: rgba(0, 0, 0, 0.08) !important;
+            color: #059669 !important;
+        }
+        body.light-theme .person-card.kurum-muduru .person-avatar {
+            background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+            color: #ffffff !important;
+        }
+        body.light-theme .person-city-tag {
+            background: rgba(124, 58, 237, 0.08);
+            color: #7c3aed;
+        }
+        body.light-theme .alphabet-divider {
+            background: rgba(5, 150, 105, 0.06);
+            color: #059669;
+            border-left-color: #059669;
+        }
+        body.light-theme .search-input-box {
+            background: #ffffff;
+            border-color: rgba(0, 0, 0, 0.12);
+            color: #0f172a;
+        }
+        body.light-theme .search-input-box::placeholder {
+            color: #94a3b8;
+        }
+        body.light-theme .search-input-box:focus {
+            border-color: #059669;
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+        }
+        body.light-theme .city-group-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-color: rgba(0, 0, 0, 0.08);
+        }
+        body.light-theme .city-group-header:hover {
+            background: rgba(5, 150, 105, 0.03);
+        }
+        body.light-theme .city-group-content {
+            background: rgba(248, 250, 252, 0.8);
+            border-top-color: rgba(0, 0, 0, 0.06);
+        }
+        body.light-theme .city-badge {
+            background: rgba(5, 150, 105, 0.08);
+            color: #059669;
+            border-color: rgba(5, 150, 105, 0.15);
+        }
+        body.light-theme .nav-button {
+            background: rgba(255, 255, 255, 0.7);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #334155;
+        }
+        body.light-theme .nav-button:hover {
+            background: rgba(5, 150, 105, 0.06);
+            color: #0f172a;
+            border-color: rgba(5, 150, 105, 0.25);
+        }
+        body.light-theme .nav-button.active {
+            background: rgba(5, 150, 105, 0.1);
+            color: #059669;
+            border-color: #059669;
+            box-shadow: 0 0 8px rgba(5, 150, 105, 0.12);
+        }
+        body.light-theme .stat-badge {
+            background: rgba(5, 150, 105, 0.08);
+            border-color: rgba(5, 150, 105, 0.15);
+            color: #059669;
+        }
+        body.light-theme #theme-toggle {
+            background: rgba(0, 0, 0, 0.04);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #475569;
+        }
+        body.light-theme #theme-toggle:hover {
+            background: rgba(245, 158, 11, 0.1);
+            color: #d97706;
+            border-color: #d97706;
+        }
+        body.light-theme .header-title {
+            background: linear-gradient(135deg, #0f172a, #059669);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.light-theme .header-logo {
+            box-shadow: 0 4px 15px rgba(5, 150, 105, 0.25);
+        }
+        body.light-theme .popup-person + .popup-person {
+            border-top-color: rgba(0, 0, 0, 0.06);
+        }
+        body.light-theme .popup-person.kurum-muduru {
+            background: rgba(245, 158, 11, 0.06) !important;
+            border-color: rgba(245, 158, 11, 0.2) !important;
+        }
+        body.light-theme .popup-avatar {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.12), rgba(124, 58, 237, 0.08)) !important;
+            border-color: rgba(0, 0, 0, 0.08) !important;
+            color: #059669 !important;
+        }
+        body.light-theme .leaflet-control-zoom a {
+            background: rgba(255, 255, 255, 0.9) !important;
+            color: #0f172a !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
+        }
+        body.light-theme .leaflet-control-zoom a:hover {
+            background: rgba(5, 150, 105, 0.12) !important;
+            color: #059669 !important;
+        }
+        body.light-theme #loading-overlay {
+            background: #f0f4f8;
+        }
+        body.light-theme .unvan-badge {
+            color: #ffffff;
         }
 
         * {
@@ -704,11 +840,15 @@
         }
 
         @media (max-width: 400px) {
-            .nav-button span.nav-text {
-                display: none;
-            }
             .nav-button {
-                padding: 8px;
+                padding: 7px 4px;
+                gap: 2px;
+            }
+            .nav-button span.nav-text {
+                font-size: 8px;
+            }
+            .nav-button i {
+                font-size: 11px;
             }
         }
     </style>
@@ -1227,11 +1367,22 @@
 
         L.control.zoom({ position: 'bottomleft' }).addTo(map);
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        // Harita tile katmanlarını tanımla
+        darkTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
             attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
             subdomains: 'abcd',
             maxZoom: 20
-        }).addTo(map);
+        });
+
+        lightTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        });
+
+        // Mevcut temaya göre doğru tile'ı yükle
+        currentTileLayer = isLightTheme ? lightTileLayer : darkTileLayer;
+        currentTileLayer.addTo(map);
 
         markerCluster = L.markerClusterGroup({
             maxClusterRadius: 40,
@@ -1359,12 +1510,22 @@
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn.querySelector('i');
     let isLightTheme = false;
+    let darkTileLayer = null;
+    let lightTileLayer = null;
+    let currentTileLayer = null;
 
     themeToggleBtn.addEventListener('click', () => {
         isLightTheme = !isLightTheme;
         document.body.classList.toggle('light-theme', isLightTheme);
         themeIcon.className = isLightTheme ? 'fas fa-sun' : 'fas fa-moon';
         themeToggleBtn.title = isLightTheme ? 'Koyu Temaya Geç' : 'Açık Temaya Geç';
+
+        // Harita tile katmanını değiştir
+        if (map && currentTileLayer) {
+            map.removeLayer(currentTileLayer);
+            currentTileLayer = isLightTheme ? lightTileLayer : darkTileLayer;
+            currentTileLayer.addTo(map);
+        }
     });
 
     // Search events
