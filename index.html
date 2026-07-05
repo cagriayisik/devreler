@@ -39,6 +39,21 @@
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* ===== LIGHT THEME ===== */
+        body.light-theme {
+            --bg-primary: #f0f4f8;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --bg-glass: rgba(240, 244, 248, 0.85);
+            --border-glass: rgba(0, 150, 120, 0.15);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --accent-dim: rgba(0, 180, 140, 0.12);
+            --purple-dim: rgba(139, 92, 246, 0.1);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -103,6 +118,7 @@
 
         .header-stats {
             display: flex;
+            align-items: center;
             gap: 8px;
         }
 
@@ -116,6 +132,28 @@
             color: var(--accent);
         }
 
+        /* ===== THEME TOGGLE BUTTON ===== */
+        #theme-toggle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--border-glass);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        #theme-toggle:hover {
+            background: var(--accent-dim);
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
         /* ===== NAVIGATION BUTTONS ===== */
         #navigation-bar {
             position: fixed;
@@ -127,29 +165,30 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-glass);
-            padding: 10px 16px;
+            padding: 8px 10px;
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 6px;
         }
 
         .nav-button {
             flex: 1;
             max-width: 160px;
-            padding: 10px 14px;
+            padding: 9px 10px;
             border: 1px solid var(--border-glass);
             border-radius: var(--radius-sm);
             background: rgba(255, 255, 255, 0.03);
             color: var(--text-secondary);
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             font-family: 'Inter', sans-serif;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 5px;
             transition: var(--transition);
+            white-space: nowrap;
         }
 
         .nav-button:hover {
@@ -632,8 +671,18 @@
 
         /* Responsive modifications */
         @media (max-width: 768px) {
+            #navigation-bar {
+                padding: 6px 6px;
+                gap: 4px;
+            }
             .nav-button {
-                padding: 8px 10px;
+                padding: 7px 6px;
+                font-size: 10px;
+                gap: 3px;
+                min-width: 0;
+                border-radius: 8px;
+            }
+            .nav-button i {
                 font-size: 12px;
             }
             .header-brand {
@@ -646,6 +695,20 @@
             }
             .header-title {
                 font-size: 13px;
+            }
+            #theme-toggle {
+                width: 30px;
+                height: 30px;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .nav-button span.nav-text {
+                display: none;
+            }
+            .nav-button {
+                padding: 8px;
             }
         }
     </style>
@@ -660,7 +723,7 @@
 
     <!-- Header -->
     <header id="header">
-        <div class="header-brand">
+        <div class="header-brand" id="home-link" style="cursor: pointer;" title="Anasayfaya Dön">
             <div class="header-logo">
                 <i class="fas fa-map-marked-alt"></i>
             </div>
@@ -670,6 +733,9 @@
             </div>
         </div>
         <div class="header-stats">
+            <button id="theme-toggle" title="Tema Değiştir">
+                <i class="fas fa-moon"></i>
+            </button>
             <div class="stat-badge">
                 <span id="stat-total">74</span> Kişi
             </div>
@@ -679,16 +745,16 @@
     <!-- Navigation Tab Buttons -->
     <div id="navigation-bar">
         <button class="nav-button active" data-target="mode-isim">
-            <i class="fas fa-user-tie"></i> İsim & Soyisim
+            <i class="fas fa-user-tie"></i> <span class="nav-text">İsim & Soyisim</span>
         </button>
         <button class="nav-button" data-target="mode-sehir">
-            <i class="fas fa-city"></i> Şehirler
+            <i class="fas fa-city"></i> <span class="nav-text">Şehirler</span>
         </button>
         <button class="nav-button" data-target="mode-mudur">
-            <i class="fas fa-user-shield"></i> Kurum Müdürleri
+            <i class="fas fa-user-shield"></i> <span class="nav-text">Kurum Müdürleri</span>
         </button>
         <button class="nav-button" data-target="mode-harita">
-            <i class="fas fa-map-marked-alt"></i> Harita
+            <i class="fas fa-map-marked-alt"></i> <span class="nav-text">Harita</span>
         </button>
     </div>
 
@@ -1251,29 +1317,54 @@
     // ===================================================================
     // TABS & EVENT LISTENERS
     // ===================================================================
+
+    // Helper: Belirli bir sekmeyi aktif et
+    function activateTab(targetId) {
+        document.querySelectorAll('.nav-button').forEach(b => {
+            b.classList.toggle('active', b.dataset.target === targetId);
+        });
+        document.querySelectorAll('.content-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        const activeSection = document.getElementById(targetId);
+        if (activeSection) activeSection.classList.add('active');
+
+        if (targetId === 'mode-harita') {
+            setTimeout(() => {
+                initMap();
+                if (map) map.invalidateSize();
+            }, 100);
+        }
+    }
+
     document.querySelectorAll('.nav-button').forEach(btn => {
         btn.addEventListener('click', () => {
-            // Set active button
-            document.querySelectorAll('.nav-button').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            // Toggle sections
-            const target = btn.dataset.target;
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            const activeSection = document.getElementById(target);
-            activeSection.classList.add('active');
-
-            // Special actions per mode
-            if (target === 'mode-harita') {
-                setTimeout(() => {
-                    initMap();
-                    if (map) map.invalidateSize();
-                }, 100);
-            }
+            activateTab(btn.dataset.target);
         });
+    });
+
+    // Anasayfa linki: Devre Arkadaşlarımız başlığına tıklanınca ilk sekmeye dön
+    document.getElementById('home-link').addEventListener('click', () => {
+        // Arama kutularını temizle
+        document.getElementById('search-isim').value = '';
+        document.getElementById('search-sehir').value = '';
+        document.getElementById('search-mudur').value = '';
+        renderNameList();
+        renderCityList();
+        renderMudurList();
+        activateTab('mode-isim');
+    });
+
+    // Tema geçişi
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = themeToggleBtn.querySelector('i');
+    let isLightTheme = false;
+
+    themeToggleBtn.addEventListener('click', () => {
+        isLightTheme = !isLightTheme;
+        document.body.classList.toggle('light-theme', isLightTheme);
+        themeIcon.className = isLightTheme ? 'fas fa-sun' : 'fas fa-moon';
+        themeToggleBtn.title = isLightTheme ? 'Koyu Temaya Geç' : 'Açık Temaya Geç';
     });
 
     // Search events
