@@ -684,6 +684,9 @@
         <button class="nav-button" data-target="mode-sehir">
             <i class="fas fa-city"></i> Şehirler
         </button>
+        <button class="nav-button" data-target="mode-mudur">
+            <i class="fas fa-user-shield"></i> Kurum Müdürleri
+        </button>
         <button class="nav-button" data-target="mode-harita">
             <i class="fas fa-map-marked-alt"></i> Harita
         </button>
@@ -710,6 +713,19 @@
         </div>
         <div class="list-container">
             <div class="list-scroll-inner" id="city-list-content">
+                <!-- Javascript ile doldurulacak -->
+            </div>
+        </div>
+    </div>
+
+    <!-- SECTION 2.5: KURUM MÜDÜRLERİ LİSTESİ -->
+    <div id="mode-mudur" class="content-section">
+        <div class="search-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-mudur" class="search-input-box" placeholder="Müdür veya kurum ara...">
+        </div>
+        <div class="list-container">
+            <div class="list-scroll-inner" id="mudur-list-content">
                 <!-- Javascript ile doldurulacak -->
             </div>
         </div>
@@ -1058,6 +1074,65 @@
         container.innerHTML = html;
     }
 
+    // ===================================================================
+    // RENDER: KURUM MÜDÜRLERİ LİSTESİ (Kurum Müdürleri)
+    // ===================================================================
+    function renderMudurList(searchTerm = '') {
+        const container = document.getElementById('mudur-list-content');
+        
+        let filtered = devreler.filter(d => d.unvan === "Kurum Müdürü");
+        
+        if (searchTerm) {
+            const term = normalizeText(searchTerm);
+            filtered = filtered.filter(d => {
+                return normalizeText(d.ad).includes(term) || normalizeText(d.kurum).includes(term) || normalizeText(d.sehir).includes(term);
+            });
+        }
+
+        // Sort alphabetically by Name
+        filtered.sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
+
+        if (filtered.length === 0) {
+            container.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <p>Aradığınız kriterde kurum müdürü bulunamadı.</p>
+                </div>
+            `;
+            return;
+        }
+
+        let html = '';
+        let currentLetter = '';
+
+        filtered.forEach(person => {
+            const firstLetter = person.ad.trim().charAt(0).toUpperCase();
+            
+            // Add alphabetical divider
+            if (firstLetter !== currentLetter) {
+                currentLetter = firstLetter;
+                html += `<div class="alphabet-divider">${currentLetter}</div>`;
+            }
+
+            const initials = getInitials(person.ad);
+            const cardClass = 'person-card kurum-muduru';
+            const unvanHtml = '<span class="unvan-badge">Kurum Müdürü</span>';
+
+            html += `
+                <div class="${cardClass}">
+                    <div class="person-avatar">${initials}</div>
+                    <div class="person-info">
+                        <div class="person-name">${person.ad}${unvanHtml}</div>
+                        <div class="person-detail">${person.kurum}</div>
+                    </div>
+                    <div class="person-city-tag">${person.sehir}</div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+    }
+
     // Accordion Toggle
     window.toggleCityGroup = function(cityId) {
         const card = document.getElementById(`city-card-${cityId}`);
@@ -1210,6 +1285,10 @@
         renderCityList(e.target.value);
     });
 
+    document.getElementById('search-mudur').addEventListener('input', (e) => {
+        renderMudurList(e.target.value);
+    });
+
     // Initial load
     window.addEventListener('load', () => {
         // Dinamik devre sayacı güncellemesi
@@ -1220,6 +1299,7 @@
 
         renderNameList();
         renderCityList();
+        renderMudurList();
         
         // Hide loading
         setTimeout(() => {
