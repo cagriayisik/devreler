@@ -250,6 +250,53 @@
             letter-spacing: 1px;
         }
 
+        /* Kurum Müdürü Özel Kart Tasarımı */
+        .person-card.kurum-muduru {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(17, 24, 39, 0.95)) !important;
+            border: 1px solid rgba(245, 158, 11, 0.45) !important;
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.08);
+        }
+        .person-card.kurum-muduru:hover {
+            border-color: rgba(245, 158, 11, 0.75) !important;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.18);
+        }
+        .person-card.kurum-muduru .person-avatar {
+            background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(245, 158, 11, 0.6) !important;
+        }
+        .unvan-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #0a0e1a;
+            font-size: 9px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 8px;
+            display: inline-flex;
+            align-items: center;
+            vertical-align: middle;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.3);
+        }
+        
+        /* Harita Popup Kurum Müdürü Tasarımı */
+        .popup-person.kurum-muduru {
+            background: rgba(245, 158, 11, 0.08) !important;
+            border-radius: 8px;
+            padding: 6px 8px;
+            margin: 2px 0;
+            border: 1px dashed rgba(245, 158, 11, 0.3) !important;
+        }
+        
+        /* Haritada Kurum Müdürü olan şehirlere özel marker-pin */
+        .marker-pin.km {
+            background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.6) !important;
+            border: 2px solid rgba(255, 255, 255, 0.6) !important;
+        }
+
         .person-card {
             display: flex;
             align-items: center;
@@ -776,7 +823,7 @@
         { id: 10, ad: "Mahmut TÜRKARSLAN", sehir: "Kırşehir", kurum: "Kırşehir Y Tipi Kapalı CİK" },
         { id: 11, ad: "Mustafa Murat ÇEPNİOĞLU", sehir: "Ordu", kurum: "Ordu E Tipi Kapalı ve Açık CİK" },
         { id: 12, ad: "Mustafa BATAN", sehir: "Şanlıurfa", kurum: "Siverek 2 Nolu T Tipi Kapalı CİK" },
-        { id: 13, ad: "Fikret Çelik", sehir: "Erzincan", kurum: "Erzincan T CİK" },
+        { id: 13, ad: "Fikret ÇELİK", sehir: "Erzincan", kurum: "Erzincan T CİK", unvan: "Kurum Müdürü" },
         { id: 14, ad: "İsmail Aygün", sehir: "Şanlıurfa", kurum: "Siverek 1 Nolu T Tipi Kapalı CİK" },
         { id: 15, ad: "Fırat Güngörmez", sehir: "Şanlıurfa", kurum: "Akçakale Açık CİK" },
         { id: 16, ad: "Hasan AY", sehir: "Tekirdağ", kurum: "Karatepe Çocuk ve Gençlik CİK" },
@@ -811,7 +858,7 @@
         { id: 45, ad: "Köksal HANİK", sehir: "Edirne", kurum: "Edirne F Tipi CİK" },
         { id: 46, ad: "Burcu UYSAL", sehir: "Manisa", kurum: "Manisa 1 Nolu T Tipi Kapalı CİK" },
         { id: 47, ad: "Doğan TEKBAŞ", sehir: "Erzurum", kurum: "Erzurum Aziziye 2 Nolu Y Tipi CİK" },
-        { id: 48, ad: "Halim TEKİNTÜRK", sehir: "Elazığ", kurum: "Sivrice Kadın Açık CİK" },
+        { id: 48, ad: "Halim TEKİNTÜRK", sehir: "Elazığ", kurum: "Sivrice Kadın Açık CİK", unvan: "Kurum Müdürü" },
         { id: 49, ad: "Sedat Yıldız", sehir: "Manisa", kurum: "Manisa E Tipi Kapalı CİK" },
         { id: 50, ad: "Tünay Altun", sehir: "Samsun", kurum: "Çarşamba Kadın Kapalı CİK" },
         { id: 51, ad: "Semra Şener", sehir: "İstanbul", kurum: "Marmara Kadın Kapalı CİK" },
@@ -835,10 +882,21 @@
         { id: 69, ad: "Serkan ARSLANTOSUN", sehir: "Ardahan", kurum: "Ardahan T Tipi Kapalı ve Açık CİK" },
         { id: 70, ad: "Ahmet BALCI", sehir: "Amasya", kurum: "Amasya E Tipi Kapalı CİK" },
         { id: 71, ad: "Özgür KAYAKAĞANLI", sehir: "Erzurum", kurum: "Dumlu 1 Nolu Yüksek Güvenlikli CİK" },
-        { id: 72, ad: "İlhami ÖDEKBAŞ", sehir: "Ağrı", kurum: "Doğubayazıt T Tipi Kapalı CİK" },
-        { id: 73, ad: "Sedat DERE", sehir: "Bitlis", kurum: "Bitlis E Tipi Kapalı CİK" },
+        { id: 72, ad: "İlhami ÖDEKBAŞ", sehir: "Ağrı", kurum: "Doğubayazıt T Tipi Kapalı CİK", unvan: "Kurum Müdürü" },
+        { id: 73, ad: "Sedat DERE", sehir: "Bitlis", kurum: "Bitlis E Tipi Kapalı CİK", unvan: "Kurum Müdürü" },
         { id: 74, ad: "Eren ALTUN", sehir: "Aksaray", kurum: "Aksaray Açık CİK" },
-        { id: 75, ad: "Mehmet Fatih UĞUZ", sehir: "Ankara", kurum: "Sincan 3 Nolu L Tipi Kapalı CİK" }
+        { id: 75, ad: "Mehmet Fatih UĞUZ", sehir: "Ankara", kurum: "Sincan 3 Nolu L Tipi Kapalı CİK" },
+        { id: 76, ad: "Erkan KURUŞ", sehir: "Van", kurum: "Van Yüksek Güvenlikli CİK" },
+        { id: 77, ad: "Yeter BÖLÜKBAŞI", sehir: "Afyonkarahisar", kurum: "Afyon E Tipi Kapalı CİK" },
+        { id: 78, ad: "Yusuf YARDIMCI", sehir: "Aksaray", kurum: "Aksaray Açık CİK" },
+        { id: 79, ad: "Kazım ÖZYILDIZ", sehir: "Karaman", kurum: "Ermenek M Tipi Kapalı CİK" },
+        { id: 80, ad: "Gökmen ÖZSOY", sehir: "Denizli", kurum: "Denizli T Tipi Kapalı CİK" },
+        { id: 81, ad: "Ali Rıza ULUTAŞ", sehir: "Kırşehir", kurum: "Kırşehir E Tipi Kapalı CİK" },
+        { id: 82, ad: "Paşa DİKBAŞ", sehir: "Mersin", kurum: "Tarsus 3 Nolu T Tipi Kapalı CİK" },
+        { id: 83, ad: "Mehmet ÇINAR", sehir: "Van", kurum: "Van Açık CİK" },
+        { id: 84, ad: "Hakan ÖZBAKIR", sehir: "İzmir", kurum: "Buca Açık CİK" },
+        { id: 85, ad: "Serdar TURGUT", sehir: "İstanbul", kurum: "Ümraniye E Tipi Kapalı CİK" },
+        { id: 86, ad: "Rıdvan ALTINIŞIK", sehir: "Aydın", kurum: "Nazilli E Tipi Kapalı CİK" }
     ];
 
     // İl koordinat eşleştirmesi
@@ -914,11 +972,15 @@
             }
 
             const initials = getInitials(person.ad);
+            const isKM = person.unvan === "Kurum Müdürü";
+            const cardClass = isKM ? 'person-card kurum-muduru' : 'person-card';
+            const unvanHtml = isKM ? '<span class="unvan-badge">Kurum Müdürü</span>' : '';
+
             html += `
-                <div class="person-card">
+                <div class="${cardClass}">
                     <div class="person-avatar">${initials}</div>
                     <div class="person-info">
-                        <div class="person-name">${person.ad}</div>
+                        <div class="person-name">${person.ad}${unvanHtml}</div>
                         <div class="person-detail">${person.kurum}</div>
                     </div>
                     <div class="person-city-tag">${person.sehir}</div>
@@ -972,11 +1034,15 @@
 
             kisiler.forEach(p => {
                 const initials = getInitials(p.ad);
+                const isKM = p.unvan === "Kurum Müdürü";
+                const cardClass = isKM ? 'person-card kurum-muduru' : 'person-card';
+                const unvanHtml = isKM ? '<span class="unvan-badge">Kurum Müdürü</span>' : '';
+
                 html += `
-                    <div class="person-card" style="background: rgba(255, 255, 255, 0.02)">
+                    <div class="${cardClass}" style="background: rgba(255, 255, 255, 0.02); margin-top: 4px;">
                         <div class="person-avatar">${initials}</div>
                         <div class="person-info">
-                            <div class="person-name">${p.ad}</div>
+                            <div class="person-name">${p.ad}${unvanHtml}</div>
                             <div class="person-detail">${p.kurum}</div>
                         </div>
                     </div>
@@ -1052,15 +1118,19 @@
             if (!coord) return;
 
             const count = kisiler.length;
-            const markerClass = count >= 5 ? 'large' : (count >= 2 ? 'multi' : '');
+            const hasKM = kisiler.some(p => p.unvan === "Kurum Müdürü");
+            let markerClass = count >= 5 ? 'large' : (count >= 2 ? 'multi' : '');
+            if (hasKM) {
+                markerClass += ' km';
+            }
 
             const marker = L.marker(coord, {
                 icon: L.divIcon({
                     className: 'custom-marker',
                     html: `<div class="marker-pin ${markerClass}"><span class="marker-count">${count}</span></div>`,
-                    iconSize: [markerClass === 'large' ? 42 : 36, markerClass === 'large' ? 42 : 36],
-                    iconAnchor: [markerClass === 'large' ? 21 : 18, markerClass === 'large' ? 42 : 36],
-                    popupAnchor: [0, -(markerClass === 'large' ? 42 : 36)]
+                    iconSize: [markerClass.includes('large') ? 42 : 36, markerClass.includes('large') ? 42 : 36],
+                    iconAnchor: [markerClass.includes('large') ? 21 : 18, markerClass.includes('large') ? 42 : 36],
+                    popupAnchor: [0, -(markerClass.includes('large') ? 42 : 36)]
                 })
             });
 
@@ -1072,11 +1142,16 @@
 
             kisiler.forEach(p => {
                 const pi = getInitials(p.ad);
+                const isKM = p.unvan === "Kurum Müdürü";
+                const popupPersonClass = isKM ? 'popup-person kurum-muduru' : 'popup-person';
+                const unvanHtml = isKM ? '<span class="unvan-badge" style="font-size: 8px; padding: 1px 4px; margin-left: 4px; line-height: 1;">Kurum Müdürü</span>' : '';
+                const avatarStyle = isKM ? 'background: linear-gradient(135deg, #f59e0b, #d97706); color: white;' : '';
+
                 popupHtml += `
-                    <div class="popup-person">
-                        <div class="popup-avatar">${pi}</div>
+                    <div class="${popupPersonClass}">
+                        <div class="popup-avatar" style="${avatarStyle}">${pi}</div>
                         <div>
-                            <div class="popup-name">${p.ad}</div>
+                            <div class="popup-name">${p.ad}${unvanHtml}</div>
                             <div class="popup-kurum-name">${p.kurum}</div>
                         </div>
                     </div>
@@ -1137,6 +1212,12 @@
 
     // Initial load
     window.addEventListener('load', () => {
+        // Dinamik devre sayacı güncellemesi
+        const totalBadge = document.getElementById('stat-total');
+        if (totalBadge) {
+            totalBadge.innerText = devreler.length;
+        }
+
         renderNameList();
         renderCityList();
         
