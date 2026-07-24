@@ -853,7 +853,7 @@
         }
     </style>
 </head>
-<body>
+<body class="light-theme">
 
     <!-- Loading Overlay -->
     <div id="loading-overlay">
@@ -873,8 +873,8 @@
             </div>
         </div>
         <div class="header-stats">
-            <button id="theme-toggle" title="Tema Değiştir">
-                <i class="fas fa-moon"></i>
+            <button id="theme-toggle" title="Koyu Temaya Geç">
+                <i class="fas fa-sun"></i>
             </button>
             <div class="stat-badge">
                 <span id="stat-total">74</span> Kişi
@@ -1512,7 +1512,7 @@
     // Tema geçişi
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn.querySelector('i');
-    let isLightTheme = false;
+    let isLightTheme = true;
     let darkTileLayer = null;
     let lightTileLayer = null;
     let currentTileLayer = null;
