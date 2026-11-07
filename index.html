@@ -616,6 +616,28 @@
             z-index: 1;
         }
 
+        /* OpenStreetMap Tiles Dark Mode & Transitions */
+        .leaflet-tile-pane {
+            transition: filter 0.3s ease;
+        }
+
+        body:not(.light-theme) .leaflet-tile-pane {
+            filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+        }
+
+        body:not(.light-theme) .leaflet-container {
+            background: #0a0e1a !important;
+        }
+
+        body:not(.light-theme) .leaflet-control-attribution {
+            background: rgba(15, 23, 42, 0.8) !important;
+            color: #94a3b8 !important;
+        }
+
+        body:not(.light-theme) .leaflet-control-attribution a {
+            color: #00d4aa !important;
+        }
+
         /* Custom marker */
         .custom-marker {
             background: none;
@@ -1371,22 +1393,12 @@
 
         L.control.zoom({ position: 'bottomleft' }).addTo(map);
 
-        // Harita tile katmanlarını tanımla
-        darkTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
-            subdomains: 'abcd',
-            maxZoom: 20
-        });
-
-        lightTileLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>',
-            subdomains: 'abcd',
-            maxZoom: 20
-        });
-
-        // Mevcut temaya göre doğru tile'ı yükle
-        currentTileLayer = isLightTheme ? lightTileLayer : darkTileLayer;
-        currentTileLayer.addTo(map);
+        // OpenStreetMap tile katmanı (API anahtarı gerektirmez)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
+            subdomains: 'abc',
+            maxZoom: 19
+        }).addTo(map);
 
         markerCluster = L.markerClusterGroup({
             maxClusterRadius: 40,
@@ -1514,22 +1526,12 @@
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn.querySelector('i');
     let isLightTheme = true;
-    let darkTileLayer = null;
-    let lightTileLayer = null;
-    let currentTileLayer = null;
 
     themeToggleBtn.addEventListener('click', () => {
         isLightTheme = !isLightTheme;
         document.body.classList.toggle('light-theme', isLightTheme);
         themeIcon.className = isLightTheme ? 'fas fa-sun' : 'fas fa-moon';
         themeToggleBtn.title = isLightTheme ? 'Koyu Temaya Geç' : 'Açık Temaya Geç';
-
-        // Harita tile katmanını değiştir
-        if (map && currentTileLayer) {
-            map.removeLayer(currentTileLayer);
-            currentTileLayer = isLightTheme ? lightTileLayer : darkTileLayer;
-            currentTileLayer.addTo(map);
-        }
     });
 
     // Search events
